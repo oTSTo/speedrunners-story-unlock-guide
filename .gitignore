@@ -1,0 +1,8 @@
+# Salvataggi e dati personali: non committarli nella repository.
+*ProgressionStore*
+*GameStore*
+*.bak
+*.tmp
+__pycache__/
+*.py[cod]
+.venv/

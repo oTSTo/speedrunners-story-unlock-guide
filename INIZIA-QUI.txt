@@ -1,0 +1,54 @@
+SPEEDRUNNERS — STORIA + XP
+Ultimo aggiornamento: 25 ottobre 2026
+
+IN QUESTA CARTELLA
+- unlock_story.py: modifica gli indicatori della storia e, se richiesto, gli XP.
+- README.md: guida completa e dettagli sul salvataggio.
+- .gitignore: evita di aggiungere salvataggi personali a una repository Git.
+
+PRIMA DI USARLO
+1. Chiudi SpeedRunners.
+2. Tieni una copia dei salvataggi. Lo script ne crea anche una copia .bak quando applichi le modifiche.
+3. Lo script richiede Python 3. Se il comando "py" non viene riconosciuto, fermati: non installare o scaricare file da fonti non verificate.
+4. Non usare il vecchio file grezzo del Desktop come salvataggio. Questa cartella contiene lo strumento, non il salvataggio del gioco.
+
+DOVE SONO I SALVATAGGI
+Il file locale è di solito qui:
+%USERPROFILE%\Documents\SavedGames\SpeedRunners\CEngineStorage\AllPlayers\SpeedRunnerHDProgressionStore_<SteamID64>
+
+La copia Steam remota è di solito qui:
+<cartella Steam>\userdata\<SteamID3>\207140\remote\SpeedRunnerHDProgressionStore
+
+I testi tra <parentesi> sono segnaposto: sostituiscili con i nomi reali. I percorsi possono cambiare se Steam o Documenti sono in un'altra cartella.
+
+COME APRIRE POWERSHELL IN QUESTA CARTELLA
+Apri la cartella sul Desktop. Clicca sulla barra del percorso in alto, scrivi powershell e premi Invio.
+
+1) SOLO VERIFICA — NON MODIFICA I FILE
+Sostituisci i due percorsi tra virgolette con quelli reali:
+
+py .\unlock_story.py --dry-run "PERCORSO_FILE_LOCALE" "PERCORSO_FILE_STEAM"
+
+Per vedere anche l'effetto di +10.000 XP senza scrivere:
+
+py .\unlock_story.py --dry-run --add-xp 10000 "PERCORSO_FILE_LOCALE" "PERCORSO_FILE_STEAM"
+
+2) APPLICARE STORIA + XP
+Solo dopo aver controllato l'anteprima, usa lo stesso comando aggiungendo --apply:
+
+py .\unlock_story.py --apply --add-xp 10000 "PERCORSO_FILE_LOCALE" "PERCORSO_FILE_STEAM"
+
+Per sbloccare la storia lasciando gli XP come sono, usa:
+
+py .\unlock_story.py --apply "PERCORSO_FILE_LOCALE" "PERCORSO_FILE_STEAM"
+
+Per impostare il totale a un valore preciso, sostituisci --add-xp 10000 con, ad esempio, --set-xp 100277. Nel salvataggio provato la schermata mostrava MAX con 100277 XP; non è un limite universale confermato.
+
+COSA SUCCEDE
+- Storia: imposta a 04 i 16 indicatori provati (4 capitoli × 4 indicatori).
+- XP: li lascia uguali se non specifichi un'opzione; --add-xp N aggiunge N al valore presente; --set-xp N imposta il totale esatto.
+- Backup: con --apply crea una copia .bak accanto a ciascun file prima della modifica.
+- Sicurezza: se versione o struttura non corrispondono, lo script si ferma senza scrivere.
+- Altri dati: non modifica ricompense o GameStore.
+
+Se il gioco mostra statistiche azzerate o valori strani, chiudilo subito e ripristina la copia .bak prima di riaprirlo. Steam Cloud può sincronizzare i file quando avvii o chiudi il gioco.
